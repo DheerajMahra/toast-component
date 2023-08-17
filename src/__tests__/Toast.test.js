@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/dom';
+import { screen, waitFor, within } from '@testing-library/dom';
 import { getExampleDom } from '../test-utils';
 
 afterEach(() => {
@@ -51,7 +51,7 @@ test('`x` click closes the Toast', async () => {
   await user.click(screen.getByRole("button", { name: /Trigger success toast/i }));
 
   const successToast = await screen.findByRole("alert", { name: /spawned a success toast/i });
-  await user.click(successToast.querySelector('.toast-dismiss'));
+  await user.click(within(successToast).getByText(/x/i));
 
-  await waitForElementToBeRemoved(() => screen.queryByRole("alert"));
+  expect(screen.queryByRole("alert")).not.toBeInTheDocument();
 });

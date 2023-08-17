@@ -4,7 +4,7 @@ import { ID, CLASS } from './constants';
 class Toast {
   constructor(options) {
     this.$toastContainer = createEl('div', { id: ID.TOAST_CONTAINER });
-    this.$timeout = options?.timeout ?? 3000;
+    this.$timeout = options?.timeout ?? 13000;
     this.closable = options?.closable ?? false;
     this.timeoutIds = {};
     this.init();
