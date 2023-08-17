@@ -43,7 +43,7 @@ test('`x` icon hidden for non-closable toast', async () => {
   await user.click(screen.getByRole("button", { name: /Trigger success toast/i }));
 
   const successToast = await screen.findByRole("alert", { name: /spawned a success toast/i });
-  expect(successToast.querySelector('.toast-dismiss')).not.toBeInTheDocument();
+  expect(within(successToast).queryByText(/x/i)).not.toBeInTheDocument();
 });
 
 test('`x` click closes the Toast', async () => {
