@@ -1,9 +1,9 @@
-import { getEl, createEl } from './utils';
-import { ID, CLASS } from './constants';
+import { getEl, createEl } from "./utils";
+import { ID, CLASS } from "./constants";
 
 class Toast {
   constructor(options) {
-    this.$toastContainer = createEl('div', { id: ID.TOAST_CONTAINER });
+    this.$toastContainer = createEl("div", { id: ID.TOAST_CONTAINER });
     this.$timeout = options?.timeout ?? 13000;
     this.closable = options?.closable ?? false;
     this.timeoutIds = {};
@@ -12,25 +12,25 @@ class Toast {
   }
 
   init() {
-    getEl('body').append(this.$toastContainer);
+    getEl("body").append(this.$toastContainer);
   }
 
   createToast(msg) {
     const dataId = Object.keys(this.timeoutIds).length++;
-    const $toast = createEl('div', {
-      role: 'alert',
+    const $toast = createEl("div", {
+      role: "alert",
       class: CLASS.TOAST,
-      'data-id': dataId,
-      'aria-label': msg
+      "data-id": dataId,
+      "aria-label": msg
     });
     $toast.textContent = msg;
 
     if (this.closable) {
-      const $closeIcon = createEl('span', {
+      const $closeIcon = createEl("span", {
         class: CLASS.TOAST_DISMISS,
-        'data-close-id': dataId,
+        "data-close-id": dataId
       });
-      $closeIcon.textContent = 'x';
+      $closeIcon.textContent = "x";
       $toast.append($closeIcon);
     }
 
@@ -48,10 +48,7 @@ class Toast {
   }
 
   bindEvents() {
-    this.$toastContainer.addEventListener(
-      'click',
-      this.handleToastClick.bind(this)
-    );
+    this.$toastContainer.addEventListener("click", this.handleToastClick.bind(this));
   }
 
   handleToastClick(e) {

@@ -1,4 +1,4 @@
-export const getEl = (query) => document.querySelector(query);
+export const getEl = query => document.querySelector(query);
 
 export const createEl = (tag, attrs) => {
   const $el = document.createElement(tag);
